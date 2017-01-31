@@ -4,6 +4,8 @@ Author: Gerard Geer
 Purpose: Implements the minimum necessary functionality to compute surface
 	     normals from two orthagonal surface tangents.
 """
+
+import math
 """
 This class represents a 3D vector. It implements the minimum amount of
 functionality required to do normal creation. (Normalization and cross
@@ -28,7 +30,7 @@ class vec3(object):
 		self.z = z;
 		
 	def normalize(self):
-		length = (self.x**2 + self.y**2 + self.z**2)**.5
+		length = math.sqrt(self.x**2 + self.y**2 + self.z**2)
 		self.x /= length;
 		self.y /= length;
 		self.z /= length;
