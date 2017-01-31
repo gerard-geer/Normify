@@ -135,7 +135,7 @@ def convertImage(argv, filename):
 	# Get the filename and open the file.
 	img = None
 	try:
-		img = Image.open(sys.argv[1])
+		img = Image.open(filename)
 		px  = img.getdata()
 	except:
 		print("Error: could not open image: "+sys.argv[1])
