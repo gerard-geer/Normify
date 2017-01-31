@@ -8,6 +8,8 @@ Purpose:
 		Allows for both parameters and options.
 	
 """
+import os
+
 def getFilenames(argv):
 	"""
 	Takes the argv list, and returns a new list containing just input
@@ -77,6 +79,10 @@ def printProgressBar(title, width, percent):
 	Example:
 	"Progress: [████████████████▌           ] 55%"
 	"""
+	# If we're on windows, the empty chars need to be two spaces.
+	space = ""
+	if(os.name == 'nt'): space = "  "
+	else: space = " "	
 	
 	# Get the number of full blocks
 	blocks = int(width*percent)
@@ -97,5 +103,5 @@ def printProgressBar(title, width, percent):
 	# opening bracket, then the full and fractional blocks, then the
 	# empty region, then the percent sign. We finish it off with an
 	# optional parameter to not append a newline to the output.
-	print("\r"+title+"["+"\u2588"*blocks+fractchar+"  "*notblocks+"] "	\
+	print("\r"+title+"["+"\u2588"*blocks+fractchar+space*notblocks+"] "	\
 	          +str(int(percent*101))+"%", end='')

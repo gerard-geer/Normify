@@ -129,7 +129,7 @@ def convertImage(argv, filename):
 			outfile = path.splitext(filename)[0]+"_n.png"
 	
 	# Before we do anything, let's print out some info.
-	print("Image:    "+filename)
+	print("\n\nImage:    "+filename)
 	print("Method:   "+op.__name__) # That's dirty.
 	print("Outfile:  "+outfile)
 	# Get the filename and open the file.
@@ -173,7 +173,7 @@ def main():
 	filenames = getFilenames(sys.argv)
 	
 	# Print some info.
-	print("Converting "+str(len(filenames))+" image"+"s"*int(len(filenames)>1.0)+"...")
+	print("Converting "+str(len(filenames))+" image"+"s"*int(len(filenames)>1.0)+"...", end='')
 	
 	# Go through and convert all the images.
 	for filename in filenames:
