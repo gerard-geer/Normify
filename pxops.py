@@ -4,6 +4,8 @@ Author: Gerard Geer
 Purpose: Defines several operations to get a single value from the three color
 		 channels of a pixel.
 """
+
+import math
 				 
 def luminance(p):
 	"""
@@ -28,6 +30,18 @@ def grayscale(p):
 		The grayscale value of the pixel.
 	"""
 	return p[0] + p[1] + p[2] / 3.0
+	
+def magnitude(p):
+	"""
+	Computes the magnitude of the pixel.
+	
+	Parameters:
+		p (pixel): The pixel to operate on.
+	
+	Returns:
+		The vector magnitude of the pixel.
+	"""
+	return math.sqrt(p[0]**2+p[1]**2+p[2]**2)
 	
 def sum(p):
 	"""
@@ -89,6 +103,7 @@ def getOp(o):
 	if o == "l" or o == "lum" or o == "luminance": return luminance
 	elif o == "gs" or o == "gray" or o == "grayscale": return grayscale
 	elif o == "avg" or o == "grey" or o == "greyscale": return grayscale
+	elif o == "m" or o == "mag" or o == "magnitude": return magnitude
 	elif o == "s" or o == "sum" or o == "total": return sum
 	elif o == "r" or o == "red" or o == "x": return red
 	elif o == "g" or o == "green" or o == "y": return green
