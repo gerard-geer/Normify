@@ -66,6 +66,7 @@ def red(p):
 	Returns:
 		The red channel value of the pixel.
 	"""
+	return p[0]
 	
 def green(p):
 	"""
@@ -77,6 +78,7 @@ def green(p):
 	Returns:
 		The green channel value of the given pixel.
 	"""
+	return p[1]
 	
 def blue(p):
 	"""
@@ -88,7 +90,7 @@ def blue(p):
 	Returns:
 		The blue channel value of the given pixel.
 	"""
-	return p[0]
+	return p[2]
 	
 def getOp(o):
 	"""
