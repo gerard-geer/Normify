@@ -34,7 +34,7 @@ def getPx(px, u, v, size):
 	Returns:
 		The pixel.
 	"""
-	return px[ size[1]*( v % size[0]) + u % size[1] ]
+	return px[ size[1]*( v % size[0]) + (u % size[1]) ]
 	
 def getPartialDerivatives(px, u, v, op, size):
 	"""
@@ -55,10 +55,10 @@ def getPartialDerivatives(px, u, v, op, size):
 		along its
 		axis.
 	"""
-	dy = ( op(getPx(px,u,v+1,size)) - op(getPx(px,u,v-1,size)) )*.5
-	dx = ( op(getPx(px,u+1,v,size)) - op(getPx(px,u-1,v,size)) )*.5
+	dy = ( op(getPx(px,u,v,size))*.01 - op(getPx(px,u,v-1,size))*.01 )
+	dx = ( op(getPx(px,u,v,size))*.01 - op(getPx(px,u-1,v,size))*.01 )
 	
-	return ( vec3(1.0/size[0], dx, 0), vec3(0, dy, 1.0/size[1]) )
+	return ( vec3(1.0, dx, 0), vec3(0, dy, 1.0) )
 	
 def calcNormal(dx, dy):
 	"""
@@ -71,7 +71,7 @@ def calcNormal(dx, dy):
 	Returns:
 		The surface normal at the given point.
 	"""
-	return cross(dx,dy).normalize()
+	return cross(dy,dx).normalize()
 	
 def convert(px, op, size):
 	"""
@@ -136,7 +136,7 @@ def convertImage(argv, filename):
 	img = None
 	try:
 		img = Image.open(filename)
-		px  = img.getdata()
+		px  = list(img.getdata())
 	except:
 		print("Error: could not open image: "+sys.argv[1])
 		sys.exit(1)
