@@ -34,7 +34,7 @@ def getPx(px, u, v, size):
 	Returns:
 		The pixel.
 	"""
-	return px[ size[1]*( v % size[0]) + (u % size[1]) ]
+	return px[ size[0]*( v % size[1]) + (u % size[0]) ]
 	
 def getPartialDerivatives(px, u, v, op, size):
 	"""
@@ -90,9 +90,9 @@ def convert(px, op, size):
 	# Create the new image, putting vec3 instances in each pixel.
 	normalMap = Image.new("RGB", size)
 	npx = normalMap.load()
-	for u in range(size[0]):
-		printProgressBar("Progress: ",30,u/size[0])
-		for v in range(size[1]):
+	for v in range(size[1]):
+		printProgressBar("Progress: ",30,v/size[1])
+		for u in range(size[0]):
 			d = getPartialDerivatives(px, u, v, op, size)
 			n = calcNormal(d[0],d[1])
 			n.x = (n.x+1.0)*127.5
@@ -137,6 +137,7 @@ def convertImage(argv, filename):
 	try:
 		img = Image.open(filename)
 		px  = list(img.getdata())
+		print("Size: "+str(img.size))
 	except:
 		print("Error: could not open image: "+sys.argv[1])
 		sys.exit(1)
